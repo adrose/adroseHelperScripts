@@ -157,3 +157,24 @@ detachAllPackages <- function() {
   if (length(package.list)>0)  for (package in package.list) detach(package, character.only=TRUE)
 
 }
+
+# Declare a function which will return a matrix
+# from the output of strsplit
+# this will only work for input data that has
+# equal number of columns though 
+strSplitMatrixReturn <- function(charactersToSplit, splitCharacter){
+  # Make sure we are dealing with characters
+  classCheck <- class(charactersToSplit)
+  if(identical(classCheck, "character")=="FALSE"){
+    charactersToSplit <- as.character(charactersToSplit)
+  }
+
+  # Now we need to find how many columns our output will have 
+  colVal <- length(strsplit(charactersToSplit[1], split=splitCharacter)[[1]])
+  
+  # Now return the matrix of characters!
+  output <- matrix(unlist(strsplit(charactersToSplit, split=splitCharacter)), ncol=colVal, byrow=T)
+
+  # Now return the output
+  return(output) 
+}
