@@ -178,3 +178,9 @@ strSplitMatrixReturn <- function(charactersToSplit, splitCharacter){
   # Now return the output
   return(output) 
 }
+
+# Create a function which will compute the mode
+Mode <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
