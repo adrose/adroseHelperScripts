@@ -201,3 +201,41 @@ multi.which <- function(A){
         I
     }) + 1 )
 }
+
+
+## Create a fucntion which will log and store everything in our log directory
+.Logger <- function(){
+
+    # copy local versions of the txtStart,
+    locStart  <-  TeachingDemos::txtStart
+    locStop  <-  TeachingDemos::txtStop
+    locR2txt  <-  TeachingDemos:::R2txt
+
+    # creat a local environment and link it to each function
+    .e.  <-  new.env()
+    .e.$R2txt.vars <- new.env()
+    environment(locStart) <- .e.
+    environment(locStop) <- .e.
+    environment(locR2txt) <- .e.
+
+
+    # reference the local functions in the calls to `addTaskCallback`
+    # and `removeTaskCallback`
+    body(locStart)[[length(body(locStart))-1]] <- 
+        substitute(addTaskCallback(locR2txt, name='locR2txt'))
+    body(locStop)[[2]] <- 
+        substitute(removeTaskCallback('locR2txt'))
+
+
+    list(start=function(logDir){
+                op <- options()
+                locStart(file.path(logDir,format(Sys.time(), "%Y_%m_%d_%H_%M_%S.txt")),
+                         results=FALSE)
+                options(op)
+    }, stop = function(){
+                op <- options()
+                locStop()
+                options(op)
+    })
+
+}()
