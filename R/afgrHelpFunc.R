@@ -227,6 +227,9 @@ multi.which <- function(A){
         substitute(removeTaskCallback('locR2txt'))
 
 
+    # Now declare our logDir ** This might require some debugging**
+    logDir <- paste(system('echo $HOME', intern=T), paste('/adroseHelperScripts/R/logDir/'), sep='')
+
     list(start=function(logDir){
                 op <- options()
                 locStart(file.path(logDir,format(Sys.time(), "%Y_%m_%d_%H_%M_%S.txt")),
