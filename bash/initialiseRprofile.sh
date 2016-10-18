@@ -47,6 +47,10 @@ sed -i -e "s/@/$/g" ${outputFile}
 sed -i -e "s/*/'/g" ${outputFile}
 sed -i -e "s/#/%/g" ${outputFile}
 
+# Now create our log directory
+mkdir -p "${myHome}/adroseHelperScripts/R/logDir"
+
+
 # Thats it!
 echo "All Done!"
 echo "Happy R-ing!"
