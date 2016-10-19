@@ -39,6 +39,7 @@ start=function(logDir){\n
                          results=FALSE)\n
                 options(op)}\n
 start(logDir)\n" >> ${outputFile}
+echo "" >> ${outputFile}
 echo "paste('Logging in', paste(logDir))" >> ${outputFile}
 
 
