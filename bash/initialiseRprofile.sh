@@ -39,8 +39,12 @@ start=function(logDir){\n
                          results=FALSE)\n
                 options(op)}\n
 start(logDir)\n" >> ${outputFile}
+<<<<<<< HEAD
+echo "paste('Logging in', paste(logDir), paste(format(Sys.time(),*#Y_#m_#d_#H_#M_#S.txt*)), sep=**)" >> ${outputFile}
+=======
 echo "" >> ${outputFile}
 echo "paste('Logging in', paste(logDir))" >> ${outputFile}
+>>>>>>> 37abcb88611fc070a43ce5d250c55326133bf82d
 
 
 # Now turn our @'s into $'s
