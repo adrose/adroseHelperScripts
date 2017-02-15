@@ -32,7 +32,7 @@ zTrans = (zCent - K) * 2;
 
 
 for i=1:xLim;for j=1:yLim;for k=1:zLim
-  S(i,j,k)=(i-(xLim+1 - xTrans)/2)^2+(j-(yLim+1 + yTrans)/2)^2+(k-(zLim+1 + zTrans)/2)^2<=radius^2;
+  S(i,j,k)=(i-xTrans)/2)^2+(j-yTrans)/2)^2+(k-zTrans)/2)^2<=radius^2;
   %or <radius^2
 end;end;end
 
