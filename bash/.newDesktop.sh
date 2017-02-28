@@ -1,0 +1,1 @@
+defaults delete com.apple.dock desktop-picture-show-debug-text;killall Dock
