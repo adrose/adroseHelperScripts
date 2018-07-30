@@ -273,3 +273,36 @@ getRVal <- function(cohortSize){
   }
   return(i)
 }
+
+## Now write a function which will scale a vector between 0 and 1
+range01 <- function(x, minVal=NULL, maxVal=NULL){
+    # Now make sure we have some standard deviation
+    if(is.na(sd(x))){
+        output <- rep(1, length(x))
+        return(output)
+    }
+    if (sd(x)==0 ){
+        output <- rep(1, length(x))
+        return(output)
+    }
+    # Now see if we are provided a max and min val
+    diffFlag <- 1
+    bothCheck <- 2
+    if(identical(NULL, minVal)){
+        minVal <- min(x)
+        bothCheck <- bothCheck - 1
+        diffFlag <- 0
+    }
+    if(identical(NULL, maxVal)){
+        print('foo')
+        maxVal <- max(x)
+        bothCheck <- bothCheck - 1
+        diffFlag <- 0
+    }
+    if(diffFlag==0 & bothCheck!=0){
+        print(diffFlag)
+        print(bothCheck)
+        warning("Only one min or max value provided use caution!!")
+    }
+    (x-minVal)/diff(c(minVal, maxVal))
+}
