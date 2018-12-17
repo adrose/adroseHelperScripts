@@ -19,6 +19,7 @@ fi
 printf ".First <- function(){\n
   sourceDir <- paste(system('echo @HOME', intern=T), paste('/adroseHelperScripts/R/'), sep='')\n
   source(paste(sourceDir, 'afgrHelpFunc.R', sep=''))\n
+  options(repos = c(CRAN = 'http://cran.rstudio.com/'),browserNLdisabled = TRUE,deparse.max.lines = 2)\n
 }\n" > ${outputFile}
 printf "locStart  <-  TeachingDemos::txtStart\n
 locStop  <-  TeachingDemos::txtStop\n
