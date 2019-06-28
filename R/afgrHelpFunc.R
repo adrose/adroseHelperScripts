@@ -306,3 +306,23 @@ range01 <- function(x, minVal=NULL, maxVal=NULL){
     }
     (x-minVal)/diff(c(minVal, maxVal))
 }
+
+## Write the apply function w/ a progress bar
+apply_pb             <- function(X, MARGIN, FUN, ...) {
+    env              <- environment()
+    pb_Total         <- sum(dim(X)[MARGIN])
+    counter          <- 0
+    pb               <- txtProgressBar(min = 0, max = pb_Total,
+    style = 3)
+    
+    wrapper          <- function(...) {
+        curVal       <- get("counter", envir = env)
+        assign("counter", curVal +1 ,envir= env)
+        setTxtProgressBar(get("pb", envir= env),
+        curVal +1)
+        FUN(...)
+    }
+    res <- apply(X, MARGIN, wrapper, ...)
+    close(pb)
+    res
+}
