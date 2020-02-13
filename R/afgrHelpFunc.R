@@ -294,7 +294,7 @@ range01 <- function(x, minVal=NULL, maxVal=NULL){
         diffFlag <- 0
     }
     if(identical(NULL, maxVal)){
-        print('foo')
+        #print('foo')
         maxVal <- max(x)
         bothCheck <- bothCheck - 1
         diffFlag <- 0
