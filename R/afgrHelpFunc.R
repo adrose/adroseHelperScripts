@@ -275,13 +275,13 @@ getRVal <- function(cohortSize){
 }
 
 ## Now write a function which will scale a vector between 0 and 1
-range01 <- function(x, minVal=NULL, maxVal=NULL){
+range01 <- function(x, minVal=NULL, maxVal=NULL, ...){
     # Now make sure we have some standard deviation
-    if(is.na(sd(x))){
+    if(is.na(sd(x, na.rm=T))){
         output <- rep(1, length(x))
         return(output)
     }
-    if (sd(x)==0 ){
+    if (sd(x, na.rm=T)==0 ){
         output <- rep(1, length(x))
         return(output)
     }
@@ -289,13 +289,13 @@ range01 <- function(x, minVal=NULL, maxVal=NULL){
     diffFlag <- 1
     bothCheck <- 2
     if(identical(NULL, minVal)){
-        minVal <- min(x)
+        minVal <- min(x, na.rm=T)
         bothCheck <- bothCheck - 1
         diffFlag <- 0
     }
     if(identical(NULL, maxVal)){
         #print('foo')
-        maxVal <- max(x)
+        maxVal <- max(x, na.rm=T)
         bothCheck <- bothCheck - 1
         diffFlag <- 0
     }
