@@ -246,7 +246,7 @@ multi.which <- function(A){
 # Create a fucntion which will find the minimum value needed for a signifiacnt
 # correlation given a sample size
 getRVal <- function(cohortSize){
-  vals <- seq(.0001,1,.0001)
+  vals <- seq(.0001,1,.01)
   index <- 1
   pVal <- 1
   while(pVal > .05) {
